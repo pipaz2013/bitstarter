@@ -1,13 +1,11 @@
 var express = require('express');
 
-var fileName = ("./index.html");
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
   var fs = require("fs");
   var buffer = new Buffer(12);
-
-  response.send("Hola Mundo 2");
+  response.send(buffer.toString('utc 8', fs.readFileSync("index.html")));
 });
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
